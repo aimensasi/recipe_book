@@ -22,7 +22,7 @@ class RecipesController < ApplicationController
       # save goes like usual
       if @recipe.save
         flash[:notice] = "Successfully created recipe."
-        redirect_to @recipe
+        redirect_to edit_recipe_path(@recipe.id)
       else
         flash[:alert] = @recipe.errors.full_messages.first
         redirect_to new_recipe_path
@@ -35,7 +35,7 @@ class RecipesController < ApplicationController
   end
 
   def update
-    byebug
+
     @recipe = Recipe.find(params[:id])
     if @recipe.update_attributes(recipe_params)
         flash.notice = "Updated Successfully"

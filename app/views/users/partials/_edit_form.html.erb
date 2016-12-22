@@ -6,7 +6,7 @@
   </div>
   <div class="card-block info-card">
      <%= image_tag(@user.avatar ? @user.avatar : "default_big.png",
-          :size => "100x250", :class => "img-thumbnail logo", :id => "logo") %>
+          :size => "300x250", :class => "img-thumbnail thumbnail_saml", :id => "thumbnail_saml") %>
     <%= form_for @user, :method => "PATCH" do |f|%>
       <!-- Form For School Update  -->
       <div class="form-group row">
@@ -56,4 +56,6 @@
   </div>
   <!-- Info Card -->
 </div>
+
+
 

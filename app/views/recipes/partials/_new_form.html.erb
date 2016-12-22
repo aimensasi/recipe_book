@@ -1,26 +1,29 @@
-<div class="card">
-  <!-- Info Card -->
-  <div class="card-header">
-    Recipe Name
-  </div>
-  <div class="card-block info-card">
 
-    <%= form_for @recipe, :method => "Post" do |f|%>
-
-    <div class="form-group row">
-        <%= f.label :title, "Title", :class => "col-sm-2 col-form-label" %>
-        <div class="col-sm-8">
-          <%= f.text_field :title, :class => "form-control", :placeholder => "Title" , :value => "#{@recipe.title}"%>
-        </div>
+<div class="container">
+  <div class="card">
+    <!-- Info Card -->
+    <div class="card-header">
+      New Recipe
     </div>
+    <div class="card-block info-card">
 
-      <div class="form-group row flex btns-group">
+      <%= form_for @recipe, :method => "Post" do |f|%>
 
-        <%= f.submit "Create Recipe", :class => "btn btn-submit" %>
+      <div class="form-group row">
+      <br>
+          <%= f.label :title, "Title", :class => "col-sm-1 col-form-label" %>
+          <div class="col-sm-8">
+            <%= f.text_field :title, :class => "form-control", :placeholder => "Title" , :value => "#{@recipe.title}"%>
+          </div>
       </div>
 
-    <% end %>
-  </div>
-  <!-- Info Card -->
-</div>
+        <div class="form-group row flex btns-group">
 
+          <%= f.submit "Create Recipe", :class => "btn btn-submit" %>
+        </div>
+
+      <% end %>
+    </div>
+    <!-- Info Card -->
+  </div>
+</div>

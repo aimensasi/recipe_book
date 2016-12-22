@@ -6,9 +6,8 @@ class WelcomeController < ApplicationController
 
   def index
     if current_user
-      redirect_to_user_profile user
-    else
 
+      current_user
     end
 
   end

@@ -1,8 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% if current_user.role == "admin" %>
 
 <h1>Listing Users</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>First name</th>
@@ -23,11 +23,16 @@
         <td><%= user.email %></td>
         <td><%= user.role %></td>
         <td><%= user.about %></td>
-        <td><%= user.avatar %></td>
+        <td><img alt="Icon" src="<%= user.avatar %>" width="100" height="100" /></td>
         <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<% else%>
+
+<h1>Please revert back to home</h1>
+
+<%end%>

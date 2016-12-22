@@ -1,44 +1,54 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @recipe.title %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @recipe.description %>
-</p>
+<!-- Page Content -->
+    <div class="container">
 
-<p>
-  <strong>Serving:</strong>
-  <%= @recipe.serving %>
-</p>
+        <div class="row">
 
-<p>
-  <strong>Preparation time hours:</strong>
-  <%= @recipe.preparation_time_hours %>
-</p>
+            <div class="col-md-3">
+                <p class="lead">Ingredients</p>
+                <div class="list-group">
+                    <% @recipe.ingredients.each do |ingredient|%>
+                    <p class="list-group-item"><%=ingredient.name%>:<%=ingredient.quantity%></p>
+                    <% end -%>
+                    <p class="lead">Serving:</p>
+                    <p><%=@recipe.serving%> people</p>
+                    <p class="lead">Preparation Time:</p>
+                    <p><%=@recipe.preparation_time_hours%>Hours:<%=@recipe.preparation_time_minutes%>Minutes</p>
+                    <p class="lead">Cooking Time:</p>
+                    <p><%=@recipe.cooking_time_hours%>Hours:<%=@recipe.cooking_time_minutes%>Minutes</p>
+                </div>
+            </div>
 
-<p>
-  <strong>Preparation time minutes:</strong>
-  <%= @recipe.preparation_time_minutes %>
-</p>
+            <div class="col-md-9">
 
-<p>
-  <strong>Cooking time hours:</strong>
-  <%= @recipe.cooking_time_hours %>
-</p>
+                <div class="thumbnail">
+                    <img class="img-responsive" src="<%=@recipe.avatar%>" alt="">
+                    <div class="caption-full">
+                        <h4 class="pull-right">by <%=@recipe.user.first_name %><%=@recipe.user.last_name %></h4>
+                        <h4><a href="/recipes/<%=@recipe.id%>"><%=@recipe.title%></a>
+                        </h4>
 
-<p>
-  <strong>Cooking time minutes:</strong>
-  <%= @recipe.cooking_time_minutes %>
-</p>
+                        <p>Description</p>
+                        <p><%=@recipe.description%></p>
+                    </div>
+                </div>
 
-<p>
-  <strong>Avatar:</strong>
-  <%= @recipe.avatar %>
-</p>
+                  <% if current_user.id == @recipe.user.id%>
+                    <div class="text-right">
 
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', recipes_path %>
+                        <a class="btn btn-success" href="/recipes/<%=@recipe.id%>/edit">Edit</a>
+                    </div>
+                  <% end -%>
+                    <hr>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+    <div class="container">
