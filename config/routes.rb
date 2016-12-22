@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   delete "/sign_out" => "sessions#destroy", as: "sign_out"
   root 'welcome#index'
   resource :session, controller: "sessions", only: [:create]
+
+  get "/title_search" => "recipes#title_search", as: "title_search"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

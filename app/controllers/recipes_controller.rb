@@ -4,7 +4,11 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
  def index
+    if params[:search].present?
+      @recipes =  Recipe.search_by_full_name(params[:search])
+    else
     @recipes = Recipe.all
+    end
   end
 
   def show
@@ -52,6 +56,10 @@ class RecipesController < ApplicationController
     flash[:notice] = "Successfully deleted recipe."
     redirect_to recipes_url
   end
+
+  # def title_search
+  #   @recipes =  Recipe.search_by_full_name(params[:search])
+  # end
 
 
   private
