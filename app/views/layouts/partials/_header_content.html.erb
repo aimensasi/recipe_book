@@ -1,0 +1,19 @@
+<div class="col-md-7 slogen">
+  <div class="title">
+    <p class="leads">A place to create your recipe book</p>
+  </div>
+  <h2 class="banner">Sign Up Now!</h2>
+  <div class="sign-up-btns">
+    <%= link_to("Join Us!!", new_user_path , :class => "btn btn-for-school") %>
+  </div>
+</div>
+<div class="col-md-6 signup-form">
+  <div class="signup-header">
+    <h2 class="title">Sign In</h2>
+  </div>
+
+  <%= render :partial => "users/partials/sign_in_form" %>
+</div>
+
+
+
