@@ -10,7 +10,7 @@ module SessionsHelper
 
   def new_user
     if logged_in?
-      redirect_to schools_path
+      redirect_to edit_user_path(current_user.id)
     end
   end
 

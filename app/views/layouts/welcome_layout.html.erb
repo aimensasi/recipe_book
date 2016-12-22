@@ -15,15 +15,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-  <% if flash[:notice].present?%>
-  <div class="alert alert-success" role="alert">
-    <h2 class="alert-message"><%= flash[:notice] %></h2>
-  </div>
-<% elsif flash[:alert].present?%>
-  <div class="alert alert-danger" role="alert">
-    <h2 class="alert-message"><%= flash[:alert] %></h2>
-  </div>
-<% end %>
    <div class="container-fluid">
       <div class="row header">
         <nav class="navbar navbar-light home-nav container">
@@ -40,8 +31,8 @@
       <%= render :partial => "layouts/partials/footer" %>
       <!-- Render Footer -->
     </div>
+    <%= javascript_include_tag 'https://use.fontawesome.com/0b77101dd2.js'%>
 
-<%= yield %>
 
 </body>
 </html>

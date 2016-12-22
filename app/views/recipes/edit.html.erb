@@ -1,0 +1,115 @@
+
+
+<div class="card">
+  <!-- Info Card -->
+  <div class="card-header">
+    <h2>Editing Recipe Details</h2>
+  </div>
+  <div class="card-block info-card">
+       <%= image_tag(@recipe.avatar ? @recipe.avatar : "default_big.png",
+          :size => "100x250", :class => "img-thumbnail thumbnail", :id => "thumbnail") %>
+
+    <%= form_for @recipe, :method => "Patch" do |f|%>
+
+    <div class="form-group row">
+        <%= f.file_field :avatar, accept: 'image/png,image/jpg,image/jpeg',
+                                :class => "inputfile", "data-parent" => "logo" %>
+        <%= f.label :avatar, :class => "btn btn-file logo-btn" do %>
+          <% end -%>
+    </div>
+
+    <div class="form-group row">
+        <%= f.label :title, "Title", :class => "col-sm-2 col-form-label" %>
+        <div class="col-sm-8">
+          <%= f.text_field :title, :class => "form-control", :placeholder => "Title" , :value => "#{@recipe.title}"%>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <%= f.label :description, "Description", :class => "col-sm-2 col-form-label" %>
+        <div class="col-sm-8">
+          <%= f.text_area :description,  cols: 5, rows: 15,:class => "form-control", :placeholder => "Describe What is it?" , :value => "#{@recipe.description}"%>
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <%= f.label :serving, "Serving", :class => "col-sm-2 col-form-label" %>
+        <div class="col-sm-8">
+          <%= f.text_field :serving, :class => "form-control", :placeholder => "How many Servings?" , :value => "#{@recipe.serving}"%>
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+      <div class="col-sm-2 col-form-label">
+      <strong>Preparation Time:</strong>
+      </div><br>
+        <%= f.label :preparation_time_hours, "Hours", :class => "col-sm-2 col-form-label" %>
+        <div class="col-sm-2">
+          <%= f.text_field :preparation_time_hours, :class => "form-control", :placeholder => "HH" , :value => "#{@recipe.preparation_time_hours}"%>
+        </div>
+        <%= f.label :preparation_time_minutes, "Minutes", :class => "col-sm-2 col-form-label" %>
+        <div class="col-sm-2">
+          <%= f.text_field :preparation_time_minutes, :class => "form-control", :placeholder => "MM" , :value => "#{@recipe.preparation_time_minutes}"%>
+        </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-2 col-form-label">
+      <strong>Cooking Time:</strong>
+      </div><br>
+        <%= f.label :cooking_time_hours, "Hours", :class => "col-sm-2 col-form-label" %>
+        <div class="col-sm-2">
+          <%= f.text_field :cooking_time_hours, :class => "form-control", :placeholder => "HH" , :value => "#{@recipe.cooking_time_hours}"%>
+        </div>
+        <%= f.label :cooking_time_minutes, "Minutes", :class => "col-sm-2 col-form-label" %>
+        <div class="col-sm-2">
+          <%= f.text_field :cooking_time_minutes, :class => "form-control", :placeholder => "MM" , :value => "#{@recipe.cooking_time_minutes}"%>
+        </div>
+    </div>
+      <div class="form-group row flex btns-group">
+
+        <%= f.submit "Update Recipe", :class => "btn btn-submit" %>
+      </div>
+
+    <% end %>
+  </div>
+  <!-- Info Card -->
+</div>
+
+
+<h1>Listing Ingredients</h1>
+<% if @recipe.ingredients.empty?%>
+<p>No ingredient</p>
+<%else%>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% @recipe.ingredients.each do |ingredient| %>
+      <%= form_for ingredient, :method => "Patch" do |f|%>
+      <tr>
+        <td><%= f.text_field :name, :class => "form-control", :placeholder => "name" , :value => "#{ingredient.name }"%></td>
+        <td><%= f.text_field :quantity, :class => "form-control", :placeholder => "quantity" , :value => "#{ingredient.quantity }"%></td>
+        <%= f.hidden_field :recipe_id, :value=>@recipe.id%>
+        <td><%= f.submit "Update Ingredient", :class => "btn btn-submit" %></td>
+        <td><%= link_to 'Destroy', ingredient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<%= link_to 'Show', @recipe %>
+<%= link_to 'Back', recipes_path %>
+
+<%= link_to 'Add Ingredient', :controller => "ingredients",:action =>"new", :recipe_id=>@recipe.id%>
+

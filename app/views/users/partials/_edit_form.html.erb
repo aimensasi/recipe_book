@@ -1,41 +1,59 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="card">
+  <!-- Info Card -->
+  <div class="card-header">
+    Your Information
+  </div>
+  <div class="card-block info-card">
+     <%= image_tag(@user.avatar ? @user.avatar : "default_big.png",
+          :size => "100x250", :class => "img-thumbnail logo", :id => "logo") %>
+    <%= form_for @user, :method => "PATCH" do |f|%>
+      <!-- Form For School Update  -->
+      <div class="form-group row">
 
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+        <%= f.file_field :avatar, accept: 'image/png,image/jpg,image/jpeg',
+                                :class => "inputfile", "data-parent" => "logo" %>
+        <%= f.label :avatar, :class => "btn btn-file logo-btn" do %>
+          <% end -%>
+      </div>
+      <div class="form-group row">
+        <%= f.label :first_name, "First Name", :class => "col-sm-2 col-form-label" %>
+        <div class="col-sm-8">
+          <%= f.text_field :first_name, :class => "form-control", :placeholder => "First Name" , :value => "#{@user.first_name}"%>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :last_name, "last Name", :class => "col-sm-2 col-form-label" %>
+        <div class="col-sm-8">
+          <%= f.text_field :last_name, :class => "form-control", :placeholder => "last Name", :value => "#{@user.last_name}" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :about, "About Me", :class => "col-sm-2 col-form-label" %>
+        <div class="col-sm-8">
+          <%= f.text_area :about, cols: 5, rows: 15,:class => "form-control", :placeholder => "Enter Small Summary About Yourself", :value => "#{@user.about}"  %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= label_tag :email, "Email Address", :class => "col-sm-2 col-form-label" %>
+        <div class="col-sm-8">
+          <%= f.email_field :email, :class => "form-control", :placeholder => "Email Address", :value => "#{@user.email}", :disabled => true %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= label_tag :role, "Account Type", :class => "col-sm-2 col-form-label" %>
+        <div class="col-sm-8">
+          <%= f.text_field :role, :class => "form-control", :disabled => true , :value => "#{@user.role}"%>
+        </div>
+      </div>
+
+      <div class="form-group row flex btns-group">
+        <%= link_to("Delete Account", "/users/#{@user.id}", :method => "DELETE", :class => "btn btn-remove-account") %>
+        <%= f.submit "Save Changes", :class => "btn btn-update" %>
+      </div>
+      <!-- Form For School Update  -->
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field" >
-    <%= f.label :email %><br>
-    <%= f.email_field :email, :placeholder=>"xxx@xx.com" ,disabled: true%>
-  </div>
-  <div class="field">
-    <%= f.label :about %><br>
-    <%= f.text_area :about %>
-  </div>
-  <div class="field">
-    <%= f.label :cover %><br>
-    <%= f.file_field :cover %>
-  </div>
-  <div class="field">
-    <%= f.label :avatar %><br>
-    <%= f.file_field :avatar %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Update", :class => "btn btn-sign-up" %>
-  </div>
-<% end %>
+  <!-- Info Card -->
+</div>
+

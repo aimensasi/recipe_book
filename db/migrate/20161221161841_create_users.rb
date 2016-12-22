@@ -6,8 +6,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :role , default: "user"
       t.string :about
-      t.string :cover
       t.string :avatar
+      t.string :password_digest
 
       t.timestamps null: false
     end

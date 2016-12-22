@@ -15,31 +15,27 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-  <% if flash[:notice].present?%>
-  <div class="alert alert-success" role="alert">
-    <h2 class="alert-message"><%= flash[:notice] %></h2>
-  </div>
-<% elsif flash[:alert].present?%>
-  <div class="alert alert-danger" role="alert">
-    <h2 class="alert-message"><%= flash[:alert] %></h2>
-  </div>
-<% end %>
-   <div class="container-fluid">
+
+    <div class="container-fluid flex flex-col">
+      <div class="row">
+        <%= render :partial => "layouts/partials/messagebar" %>
+      </div>
       <div class="row header">
         <nav class="navbar navbar-light home-nav container">
           <%= render :partial => "layouts/partials/navbar" %>
         </nav> <!-- Navbar -->
-        <div class="header-content container">
-          <%= render :partial => "layouts/partials/header_content" %>
-        </div> <!-- header-content -->
       </div> <!-- Header -->
       <div class="row contant">
-          <%= yield %>
-      </div>
-      <!-- Render Footer -->
+        <%= yield %>
+      </div> <!-- School -->
+      <div class="mt-2"></div>
+
       <%= render :partial => "layouts/partials/footer" %>
-      <!-- Render Footer -->
     </div>
+
+    <!-- Important For  Fonts Icons -->
+    <%= javascript_include_tag 'https://use.fontawesome.com/0b77101dd2.js'%>
+  </body>
 
 
 </body>
