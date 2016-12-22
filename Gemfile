@@ -40,6 +40,11 @@ gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem "mini_magick"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+#facebook
+gem 'omniauth'
+gem 'omniauth-facebook', '1.4.0'
+
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
