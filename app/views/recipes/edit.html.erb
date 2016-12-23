@@ -102,7 +102,7 @@
           <td><%= f.text_field :quantity, :class => "form-control", :placeholder => "quantity" , :value => "#{ingredient.quantity }"%></td>
           <%= f.hidden_field :recipe_id, :value=>@recipe.id%>
           <td><%= f.submit "Update Ingredient", :class => "btn btn-submit" %></td>
-          <td><%= link_to 'Delete Ingredient', ingredient, :class => "btn btn-submit",method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Delete Ingredient', ingredient,:id=>"delete_ingredient", :class => "btn btn-submit",method: :delete, data: { confirm: 'Are you sure?' },:remote => true %></td>
         </tr>
       <% end %>
       <% end %>

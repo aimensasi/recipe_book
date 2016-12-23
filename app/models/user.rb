@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 #     x = self.authentications.where(:provider=>:facebook).first
 #     return x.token unless x.nil?
 #   end
-    def self.from_omniauth(auth)
+  def self.from_omniauth(auth)
      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.uid      = auth.uid

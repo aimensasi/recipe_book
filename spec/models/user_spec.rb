@@ -14,8 +14,8 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-  let(:valid_attributes) { {:email => "adam@gmail.com", :password => "12234567", :role => "individual"} }
-  let(:invalid_attributes) { {:email => "adam@gmail.com", :password => "1567", :role => "individual"} }
+  let(:valid_attributes) { {:first_name=>"Josh",:last_name=>"Teng",:email => "adam@gmail.com", :password => "12234567"} }
+  let(:invalid_attributes) { {:email => "adam@gmail.com", :password => "1567"} }
 
 
    context "validations" do
@@ -36,15 +36,10 @@ RSpec.describe User, type: :model do
         it { is_expected.to validate_presence_of(:password) }
         it { is_expected.to validate_length_of(:password).is_at_least(6).is_at_most(20) }
       end
-      context "Role validations" do
-        it { is_expected.to validate_presence_of(:role) }
-        it { is_expected.to validate_inclusion_of(:role).in_array(['school', 'individual']) }
-      end
     end
 
     describe "Validates Associations" do
-      it { should have_one(:school) }
-      it { should have_one(:individual) }
+      it { should have_many(:recipes) }
     end
   end
 
