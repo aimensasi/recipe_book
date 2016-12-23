@@ -43,6 +43,8 @@ gem "mini_magick"
 #facebook
 gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
+#auto pagination
+gem 'will_paginate', '~> 3.1.0'
 
 gem 'figaro'
 
