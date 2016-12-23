@@ -1,5 +1,9 @@
 <ul class="nav navbar-nav flex">
-  <%= link_to("RepiBook", recipes_path , :class => "navbar-brand") %>
+  <%if logged_in?%>
+    <%= link_to("RepiBook", recipes_path , :class => "navbar-brand") %>
+  <%else%>
+    <%= link_to("RepiBook", root_path , :class => "navbar-brand") %>
+  <%end%>
   <li class="nav-item ">
     <%if logged_in?%>
       <%= link_to("Home", recipes_path , :class => "nav-link") %>
@@ -10,21 +14,27 @@
 
 
 
+
   <% if logged_in? %>
+    <form id="search_title" class="navbar-form navbar-left" action="/recipes" method="get"  >
+      <div class="form-group">
+        <input type="text" name="search" class="form-control" placeholder="Search by title">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
 
-          <li><%= link_to("Profile", user_path(current_user.id), :class => "nav-link" )%></li>
-          <li><%= link_to("Sign Out", sign_out_path, method: :delete, :class => "nav-link") %></li>
-
-          <p class="navbar-text"> Signed in as: <%= truncate(current_user.last_name, :length => 17, :end_string => '') %></p>
-
-
+    <li><%= link_to("Profile", user_path(current_user.id), :class => "nav-link" )%></li>
+    <li><%= link_to("Sign Out", sign_out_path, method: :delete, :class => "nav-link") %></li>
+    <p class="navbar-text"> Signed in as: <%= truncate(current_user.last_name, :length => 17, :end_string => '') %></p>
   <% else %>
     <li class="nav-item">
       <%= link_to("Sign In", sign_in_path , :class => "nav-link") %>
     </li>
       <li class="nav-item">
-        <%= link_to("Sign Up", new_user_path, :class => "dropdown-item") %>
+        <%= link_to("Sign Up", new_user_path, :class => "nav-link") %>
        </li>
 
   <% end %>
+
+
 </ul>

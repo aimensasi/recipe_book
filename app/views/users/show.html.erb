@@ -1,61 +1,41 @@
 <div class="container">
   <p id="notice"><%= notice %></p>
-  <p>
+  <div class="list-group">
+    <div class="list-group-item col-md-12">
+       <div class=".list-group-item:first-child"><%= image_tag(@user.avatar ? @user.avatar : "default_small.png",:size => "200x150", :class => "img-thumbnail logo") %>
+        <div class=".list-group-item:first-child"><strong>First name:</strong> <%= @user.first_name %></div>
+        <div class=".list-group-item:first-child"><strong>Last name:</strong> <%= @user.last_name %></div>
+        <div class=".list-group-item:first-child"><strong>About:</strong> <%= @user.about %></div>
+        <div class=".list-group-item:first-child"><strong>Email:</strong> <%= @user.email %></div>
+        <div class=".list-group-item:first-child"><strong>Role:</strong> <%= @user.role %></div>
+      </div>
+    </div>
+  </div>
 
-    <%= image_tag(@user.avatar ? @user.avatar : "default_small.png",
-                :size => "250x200", :class => "img-thumbnail logo") %>
-  </p>
-  <p>
-    <strong>First name:</strong>
-    <%= @user.first_name %>
-  </p>
-
-  <p>
-    <strong>Last name:</strong>
-    <%= @user.last_name %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= @user.email %>
-  </p>
-
-  <p>
-    <strong>Role:</strong>
-    <%= @user.role %>
-  </p>
-
-  <p>
-    <strong>About:</strong>
-    <%= @user.about %>
-  </p>
-  <% if curent_user.id = @user.id %>
-    <%= link_to 'Edit Profile', edit_user_path(@user) %> |
-    <%= link_to 'Add Recipe', new_recipe_path %>
-  <%end%>
-
-        <div class="row">
-
-            <div class="col-lg-12">
-                <h3 class="page-body">List of Recipes</h3>
-            </div>
-          <% @user.recipes.each do |recipe| %>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="/recipes/<%= recipe.id %>">
-                    <img class="img-responsive" src="<%= recipe.avatar %>" alt="">
-                </a>
-                <h3>
-                  <%= recipe.title %>
-                </h3>
-                <% if current_user.role == "admin" || curent_user = @user %>
-                <%= link_to 'Delete Recipe', recipe,:class => "btn btn-submit", method: :delete,data: { confirm: 'Are you sure?' } %>
-                <%end%>
-            </div>
-          <% end -%>
-        </div>
-
-
-
+  <div class="container">
+    <% if current_user.id = @user.id %>
+      <%= link_to 'Edit Profile', edit_user_path(@user) %> |
+      <%= link_to 'Add Recipe', new_recipe_path %>
+    <%end%>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-body">List of Recipes</h3>
+  </div>
+    <% @user.recipes.each do |recipe| %>
+          <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+              <a class="thumbnail" href="/recipes/<%= recipe.id %>">
+                <img class="img-responsive" src="<%= recipe.avatar %>" alt="">
+              </a>
+              <h3>
+                <%= recipe.title %>
+              </h3>
+              <% if current_user.role == "admin" || current_user = @user %>
+                <%= link_to 'Delete Recipe', recipe,:class => "btn btn-warning", method: :delete,data: { confirm: 'Are you sure?' } %>
+              <%end%>
+          </div>
+    <% end -%>
+  </div>
 </div>
 
 

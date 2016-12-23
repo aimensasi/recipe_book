@@ -1,19 +1,21 @@
-<div class="col-md-7 slogen">
-  <div class="title">
-    <p class="leads">A place to create your recipe book</p>
+<div class="col-md-5">
+  <div class="welcome">
+    <h1>A place to create your recipe book.</h1>
   </div>
-  <h2 class="banner">Sign Up Now!</h2>
-  <div class="sign-up-btns">
-    <%= link_to("Click Here!!", new_user_path , :class => "btn btn-for-school") %>
+  <div >
+    <h2><%= link_to("Sign Up Now!", new_user_path ,:class=>"btn-signup") %></h2>
   </div>
 </div>
-<div class="col-md-6 signup-form">
-  <div class="signup-header">
-    <h2 class="title">Sign In</h2>
-  </div>
 
-  <%= render :partial => "users/partials/sign_in_form" %>
-</div>
+  <div class="signin-box col-md-5">
+    <div>
+    <p class="signin-header" style="font-size: 35px">Sign In</p>
+    </div>
+    <div class="signin-form">
+      <%= render :partial => "users/partials/sign_in_form" %>
+    </div>
+
+  </div>
 
 
 

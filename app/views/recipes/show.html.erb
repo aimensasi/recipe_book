@@ -1,54 +1,65 @@
 
 
 <!-- Page Content -->
-    <div class="container">
+	<div class="container">
 
-        <div class="row">
+		<div class="row">
 
-            <div class="col-md-3">
-                <p class="lead">Ingredients</p>
-                <div class="list-group">
-                    <% @recipe.ingredients.each do |ingredient|%>
-                    <p class="list-group-item"><%=ingredient.name%>:<%=ingredient.quantity%></p>
-                    <% end -%>
-                    <p class="lead">Serving:</p>
-                    <p><%=@recipe.serving%> people</p>
-                    <p class="lead">Preparation Time:</p>
-                    <p><%=@recipe.preparation_time_hours%>Hours:<%=@recipe.preparation_time_minutes%>Minutes</p>
-                    <p class="lead">Cooking Time:</p>
-                    <p><%=@recipe.cooking_time_hours%>Hours:<%=@recipe.cooking_time_minutes%>Minutes</p>
-                </div>
-            </div>
+			<div class="col-md-3">
 
-            <div class="col-md-9">
+				<div class="lead">
+					Ingredients:
+					<div class="list-group-item">
+						<% if @recipe.ingredients.empty?%>
+							<div class="list-group-item:first-child">No ingredient</div>
+						<%else%>
+							<% @recipe.ingredients.each do |ingredient|%>
+							<div class="list-group-item:first-child">-<%=ingredient.name%>:<%=ingredient.quantity%></div>
+							<% end -%>
+						<% end -%>
+					</div>
+				</div>
+				<div class="list-group-item">
+					<div class="lead">Serving:</div>
+					<% if @recipe.serving.nil?%>
+						<div class="list-group-item:first-child">Not Available</div>
+					<%else%>
+						<div class="list-group-item:first-child"><%=@recipe.serving%> people</div>
+					<% end -%>
+					<div class="lead">Preparation Time:</div>
+					<% if @recipe.preparation_time_hours.nil? || @recipe.preparation_time_minutes.nil?  %>
+						<div class="list-group-item:first-child">Not Available</div>
+					<%else%>
+						<div class="list-group-item:first-child"><%=@recipe.preparation_time_hours%>Hours:<%=@recipe.preparation_time_minutes%>Minutes</div>
+					<%end%>
+					<div class="lead">Cooking Time:</div>
+					<% if @recipe.cooking_time_hours.nil? || @recipe.cooking_time_minutes.nil?  %>
+						<div class="list-group-item:first-child">Not Available</div>
+					<%else%>
+						<div class="list-group-item:first-child"><%=@recipe.cooking_time_hours%>Hours:<%=@recipe.cooking_time_minutes%>Minutes</div>
+					<% end -%>
+				</div>
+			</div>
 
-                <div class="thumbnail">
-                    <img class="img-responsive" src="<%=@recipe.avatar%>" alt="">
-                    <div class="caption-full">
-                        <h4 class="pull-right">by <%=@recipe.user.first_name %><%=@recipe.user.last_name %></h4>
-                        <h4><a href="/recipes/<%=@recipe.id%>"><%=@recipe.title%></a>
-                        </h4>
+			<div class="col-md-7" style="margin-top: 30px">
+				<div class="thumbnail">
+					<img class="img-responsive" src="<%=@recipe.avatar%>" alt="">
+						<div class="caption-full">
+							<h4 class="pull-right">by <%=@recipe.user.first_name %><%=@recipe.user.last_name %></h4>
+							<h4><a href="/recipes/<%=@recipe.id%>"><%=@recipe.title%></a></h4>
 
-                        <p>Description</p>
-                        <p><%=@recipe.description%></p>
-                    </div>
-                </div>
+							<div>Description</div>
+							<div><%=@recipe.description%></div>
+						</div>
+				</div>
 
-                  <% if current_user.id == @recipe.user.id || current_user.role == "admin"%>
-                    <div class="text-right">
-
-                        <a class="btn btn-success" href="/recipes/<%=@recipe.id%>/edit">Edit</a>
-                    </div>
-                  <% end -%>
-                    <hr>
-
-
-
-            </div>
-
-        </div>
-
-    </div>
-    <!-- /.container -->
-
-    <div class="container">
+				<% if current_user.id == @recipe.user.id || current_user.role == "admin"%>
+				<div class="text-right">
+					<a class="btn btn-success" href="/recipes/<%=@recipe.id%>/edit">Edit</a>
+				</div>
+			  <% end -%>
+			<hr>
+			</div>
+		</div>
+	<!-- /.container -->
+	<div class="container">

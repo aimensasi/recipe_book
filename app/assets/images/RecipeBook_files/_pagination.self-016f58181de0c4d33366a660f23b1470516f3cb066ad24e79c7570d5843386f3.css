@@ -1,0 +1,42 @@
+/* line 48, /home/nextacademy/Desktop/Coding/Final-Assessment/recipe_book/app/assets/stylesheets/partials/_pagination.scss */
+.apple_pagination {
+  background: #f1f1f1;
+  border: 1px solid #e5e5e5;
+  text-align: center;
+  padding: 1em;
+  cursor: default;
+}
+
+/* line 54, /home/nextacademy/Desktop/Coding/Final-Assessment/recipe_book/app/assets/stylesheets/partials/_pagination.scss */
+.apple_pagination a, .apple_pagination span {
+  padding: 0.2em 0.3em;
+}
+
+/* line 56, /home/nextacademy/Desktop/Coding/Final-Assessment/recipe_book/app/assets/stylesheets/partials/_pagination.scss */
+.apple_pagination .disabled {
+  color: #aaaaaa;
+}
+
+/* line 58, /home/nextacademy/Desktop/Coding/Final-Assessment/recipe_book/app/assets/stylesheets/partials/_pagination.scss */
+.apple_pagination .current {
+  font-style: normal;
+  font-weight: bold;
+  background-color: #bebebe;
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  line-height: 1.5;
+  border-radius: 1em;
+  text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px;
+}
+
+/* line 70, /home/nextacademy/Desktop/Coding/Final-Assessment/recipe_book/app/assets/stylesheets/partials/_pagination.scss */
+.apple_pagination a {
+  text-decoration: none;
+  color: black;
+}
+
+/* line 73, /home/nextacademy/Desktop/Coding/Final-Assessment/recipe_book/app/assets/stylesheets/partials/_pagination.scss */
+.apple_pagination a:hover, .apple_pagination a:focus {
+  text-decoration: underline;
+}

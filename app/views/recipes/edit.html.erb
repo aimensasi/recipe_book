@@ -1,17 +1,15 @@
-
-
 <div class="container">
-<div class="card">
   <!-- Info Card -->
-  <div class="card-header">
-    <h2>Editing Recipe Details</h2>
+  <div class="header">
+    <h2>Recipe Details</h2>
   </div>
   <div class="card-block info-card">
-       <%= image_tag(@recipe.avatar ? @recipe.avatar : "default_big.png",
-          :size => "300x250", :class => "img-thumbnail thumbnail", :id => "thumbnail") %>
+    <div class="form-group row">
+     <%= image_tag(@recipe.avatar ? @recipe.avatar : "default_big.png",
+        :size => "300x250", :class => "img-thumbnail thumbnail", :id => "thumbnail") %>
+    </div>
 
     <%= form_for @recipe, :method => "Patch" do |f|%>
-
     <div class="form-group row">
         <%= f.file_field :avatar, accept: 'image/png,image/jpg,image/jpeg',
                                 :class => "inputfile", "data-parent" => "logo" %>
@@ -20,40 +18,40 @@
     </div>
 
     <div class="form-group row">
-        <%= f.label :title, "Title", :class => "col-sm-2 col-form-label" %>
+        <%= f.label :title, "Title:", :class => "col-sm-2 col-form-label" %>
         <div class="col-sm-8">
           <%= f.text_field :title, :class => "form-control", :placeholder => "Title" , :value => "#{@recipe.title}"%>
         </div>
     </div>
 
     <div class="form-group row">
-        <%= f.label :description, "Description", :class => "col-sm-2 col-form-label" %>
+        <%= f.label :description, "Description:", :class => "col-sm-2 col-form-label" %>
         <div class="col-sm-8">
           <%= f.text_area :description,  cols: 5, rows: 15,:class => "form-control", :placeholder => "Describe What is it?" , :value => "#{@recipe.description}"%>
         </div>
     </div>
 
-
     <div class="form-group row">
-        <%= f.label :serving, "Serving", :class => "col-sm-2 col-form-label" %>
+        <%= f.label :serving, "Servings:", :class => "col-sm-2 col-form-label" %>
         <div class="col-sm-8">
           <%= f.text_field :serving, :class => "form-control", :placeholder => "How many Servings?" , :value => "#{@recipe.serving}"%>
         </div>
     </div>
 
-
     <div class="form-group row">
-      <div class="col-sm-2 col-form-label">
-      <strong>Preparation Time:</strong>
-      </div><br>
-        <%= f.label :preparation_time_hours, "Hours", :class => "col-sm-2 col-form-label" %>
-        <div class="col-sm-2">
-          <%= f.text_field :preparation_time_hours, :class => "form-control", :placeholder => "HH" , :value => "#{@recipe.preparation_time_hours}"%>
-        </div>
-        <%= f.label :preparation_time_minutes, "Minutes", :class => "col-sm-2 col-form-label" %>
-        <div class="col-sm-2">
-          <%= f.text_field :preparation_time_minutes, :class => "form-control", :placeholder => "MM" , :value => "#{@recipe.preparation_time_minutes}"%>
-        </div>
+
+        <div class="col-sm-2 col-form-label">
+          <strong>Preparation Time:</strong>
+        </div><br>
+          <%= f.label :preparation_time_hours, "Hours", :class => "col-sm-2 col-form-label" %>
+          <div class="col-sm-2">
+            <%= f.text_field :preparation_time_hours, :class => "form-control", :placeholder => "HH" , :value => "#{@recipe.preparation_time_hours}"%>
+          </div>
+          <%= f.label :preparation_time_minutes, "Minutes", :class => "col-sm-2 col-form-label" %>
+          <div class="col-sm-2">
+            <%= f.text_field :preparation_time_minutes, :class => "form-control", :placeholder => "MM" , :value => "#{@recipe.preparation_time_minutes}"%>
+          </div>
+
     </div>
 
     <div class="form-group row">
@@ -70,19 +68,18 @@
         </div>
     </div>
 
-      <div class="form-group row flex btns-group">
 
-        <%= f.submit "Update Recipe", :class => "btn btn-submit" %>
+      <div class="form-group row flex btns-group" style="margin-left: 5px">
+
+        <%= f.submit "Update Recipe", :class => "btn btn-primary" %>
       </div>
 
     <% end %>
+  </div><br>
+
+  <div class="header">
+    <h2>Listing Ingredients</h2>
   </div>
-  <!-- Info Card -->
-</div>
-
-
-
-  <h1>Listing Ingredients</h1>
   <% if @recipe.ingredients.empty?%>
     <p>No ingredient</p>
   <%else%>
@@ -104,8 +101,8 @@
           <td><%= f.text_field :name, :class => "form-control", :placeholder => "name" , :value => "#{ingredient.name }"%></td>
           <td><%= f.text_field :quantity,:class => "form-control", :placeholder => "quantity" , :value => "#{ingredient.quantity }"%></td>
           <%= f.hidden_field :recipe_id, :value=>@recipe.id%>
-          <td><%= f.submit "Update Ingredient", :class => "btn btn-submit" %></td>
-          <td><%= link_to 'Delete Ingredient', ingredient,:id=>"delete_ingredient", :class => "btn btn-submit",method: :delete, data: { confirm: 'Are you sure?' },:remote => true %></td>
+          <td><%= f.submit "Update Ingredient", :class => "btn btn-primary" %></td>
+          <td><%= link_to 'Delete Ingredient', ingredient,:id=>"delete_ingredient", :class => "btn btn-warning",method: :delete, data: { confirm: 'Are you sure?' },:remote => true %></td>
         </tr>
       <% end %>
       <% end %>
@@ -115,10 +112,10 @@
 
 
   <div class="btn-group">
-    <p><%= link_to 'Add Ingredient',:class => "btn btn-submit",:controller => "ingredients",:action =>"new", :recipe_id=>@recipe.id%>
+    <p><%= link_to 'Add Ingredient',:class => "btn btn-primary",:controller => "ingredients",:action =>"new", :recipe_id=>@recipe.id%>
 
-  <%= link_to 'Delete Recipe', @recipe,:class => "btn btn-submit", method: :delete,data: { confirm: 'Are you sure?' } %>
-  <%= link_to 'back', recipe_path(@recipe.id),:class => "btn btn-submit" %></p>
+  <%= link_to 'Delete Recipe', @recipe,:class => "btn btn-warning", method: :delete,data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'back', recipe_path(@recipe.id),:class => "btn btn-default" %></p>
 
 
   </div>

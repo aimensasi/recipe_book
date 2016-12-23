@@ -1,12 +1,13 @@
-
-<div class="card">
+<div class="container">
   <!-- Info Card -->
-  <div class="card-header">
-    Your Information
+  <div class="header">
+    <h1>Your Information</h1>
   </div>
   <div class="card-block info-card">
+    <div class="form-group row">
      <%= image_tag(@user.avatar ? @user.avatar : "default_big.png",
-          :size => "300x250", :class => "img-thumbnail thumbnail_saml", :id => "thumbnail_saml") %>
+          :size => "200x150", :class => "img-thumbnail thumbnail_saml", :id => "thumbnail_saml") %>
+    </div>
     <%= form_for @user, :method => "PATCH" do |f|%>
       <!-- Form For School Update  -->
       <div class="form-group row">
@@ -16,6 +17,7 @@
         <%= f.label :avatar, :class => "btn btn-file logo-btn" do %>
           <% end -%>
       </div>
+
       <div class="form-group row">
         <%= f.label :first_name, "First Name", :class => "col-sm-2 col-form-label" %>
         <div class="col-sm-8">
@@ -55,8 +57,8 @@
       </div>
 
       <div class="form-group row flex btns-group">
-        <%= link_to("Delete Account", "/users/#{@user.id}", :method => "DELETE", :class => "btn btn-remove-account") %>
-        <%= f.submit "Save Changes", :class => "btn btn-update" %>
+        <%= link_to("Delete Account", "/users/#{@user.id}",:class => "btn btn-warning", :method => "DELETE") %>
+        <%= f.submit "Save Changes", :class => "btn btn-primary" %>
       </div>
       <!-- Form For School Update  -->
     <% end %>
