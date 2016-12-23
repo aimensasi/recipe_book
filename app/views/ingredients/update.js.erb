@@ -1,0 +1,9 @@
+$('#update_ingredient').bind('ajax:success', function() {
+        $(this).closest('tr').fadeOut();
+        $("#notice").html("<%=j flash[:notice] %>");
+
+
+});
+
+
+ $("html, body").animate({ scrollTop: 0 }, 100);
