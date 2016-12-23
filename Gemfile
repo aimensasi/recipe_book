@@ -49,6 +49,15 @@ gem 'figaro'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'faker', '~> 1.6', '>= 1.6.6'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'guard-rspec'
+  gem 'annotate'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem "rspec-given"
+  gem 'rb-fsevent'
 end
 
 group :development do

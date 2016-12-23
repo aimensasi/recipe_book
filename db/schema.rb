@@ -50,6 +50,9 @@ ActiveRecord::Schema.define(version: 20161222073630) do
     t.string   "about"
     t.string   "avatar"
     t.string   "password_digest"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "oauth_token"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end

@@ -8,6 +8,10 @@ class CreateUsers < ActiveRecord::Migration
       t.string :about
       t.string :avatar
       t.string :password_digest
+      t.string :provider
+      t.string   "uid"
+      t.string   "oauth_token"
+      t.string   "provider"
 
       t.timestamps null: false
     end

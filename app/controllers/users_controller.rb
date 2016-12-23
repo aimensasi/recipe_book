@@ -46,6 +46,7 @@ class UsersController < ApplicationController
           @user.last_name = user_params[:last_name]
           @user.about = user_params[:about]
           @user.avatar = user_params[:avatar] if user_params[:avatar]
+          @user.email = user_params[:email] if user_params[:email]
           if @user.save(:validate=>false)
             flash.notice = "Updated Successfully"
           else
