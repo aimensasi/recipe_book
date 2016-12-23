@@ -5,9 +5,9 @@ class RecipesController < ApplicationController
   # GET /recipes.json
  def index
     if params[:search].present?
-      @recipes =  Recipe.search_by_full_name(params[:search])
+      @recipes = Recipe.search_by_full_name(params[:search]).paginate(:page => params[:page], :per_page => 30)
     else
-    @recipes = Recipe.all
+    @recipes = Recipe.paginate(:page => params[:page], :per_page => 30)
     end
   end
 
