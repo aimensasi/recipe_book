@@ -44,10 +44,17 @@ class IngredientsController < ApplicationController
   # PATCH/PUT /ingredients/1.json
   def update
 
-      @ingredient.update(ingredient_params)
+
       @recipe = Recipe.find(params[:ingredient][:recipe_id])
 
-      redirect_to edit_recipe_path(@recipe.id)
+
+      respond_to do |format|
+      @ingredient.update(ingredient_params)
+      format.html { redirect_to edit_recipe_path(@recipe.id) }
+      format.json { head :no_content }
+      format.js   { flash[:notice]="Successfully Updated Ingredient" }
+    end
+
 
   end
 
@@ -55,10 +62,17 @@ class IngredientsController < ApplicationController
   # DELETE /ingredients/1.json
   def destroy
     @recipe = @ingredient.recipe
-    @ingredient.destroy
 
-    flash[:notice] = "Successfully deleted ingredient."
-    redirect_to edit_recipe_path(@recipe.id)
+     respond_to do |format|
+      @ingredient.destroy
+      format.html { redirect_to edit_recipe_path(@recipe.id) }
+      format.json { head :no_content }
+      format.js   { render :layout => false }
+    end
+
+
+    # flash[:notice] = "Successfully deleted ingredient."
+    # redirect_to edit_recipe_path(@recipe.id)
 
   end
 
@@ -70,6 +84,6 @@ class IngredientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ingredient_params
-      params.require(:ingredient).permit(:name, :quantity, :recipe)
+      params.require(:ingredient).permit(:name, :quantity, :recipe_id)
     end
 end

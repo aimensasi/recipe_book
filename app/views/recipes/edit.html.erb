@@ -1,4 +1,5 @@
 
+
 <div class="container">
 <div class="card">
   <!-- Info Card -->
@@ -80,10 +81,12 @@
 </div>
 
 
+
   <h1>Listing Ingredients</h1>
   <% if @recipe.ingredients.empty?%>
     <p>No ingredient</p>
   <%else%>
+  <div id="notice"></div>
   <table>
     <thead>
       <tr>
@@ -96,19 +99,20 @@
     <tbody>
 
       <% @recipe.ingredients.each do |ingredient| %>
-        <%= form_for ingredient, :method => "Patch" do |f|%>
+        <%= form_for ingredient, :id=>"update_ingredient",:remote => true,:method => "Patch" do |f|%>
         <tr>
           <td><%= f.text_field :name, :class => "form-control", :placeholder => "name" , :value => "#{ingredient.name }"%></td>
-          <td><%= f.text_field :quantity, :class => "form-control", :placeholder => "quantity" , :value => "#{ingredient.quantity }"%></td>
+          <td><%= f.text_field :quantity,:class => "form-control", :placeholder => "quantity" , :value => "#{ingredient.quantity }"%></td>
           <%= f.hidden_field :recipe_id, :value=>@recipe.id%>
           <td><%= f.submit "Update Ingredient", :class => "btn btn-submit" %></td>
-          <td><%= link_to 'Delete Ingredient', ingredient, :class => "btn btn-submit",method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Delete Ingredient', ingredient,:id=>"delete_ingredient", :class => "btn btn-submit",method: :delete, data: { confirm: 'Are you sure?' },:remote => true %></td>
         </tr>
       <% end %>
       <% end %>
     </tbody>
   </table>
   <% end %>
+
 
   <div class="btn-group">
     <p><%= link_to 'Add Ingredient',:class => "btn btn-submit",:controller => "ingredients",:action =>"new", :recipe_id=>@recipe.id%>
