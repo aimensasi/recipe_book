@@ -29,10 +29,10 @@
     <strong>About:</strong>
     <%= @user.about %>
   </p>
-
-  <%= link_to 'Edit Profile', edit_user_path(@user) %> |
-  <%= link_to 'Add Recipe', new_recipe_path %>
-
+  <% if curent_user.id = @user.id %>
+    <%= link_to 'Edit Profile', edit_user_path(@user) %> |
+    <%= link_to 'Add Recipe', new_recipe_path %>
+  <%end%>
 
         <div class="row">
 
@@ -47,11 +47,15 @@
                 <h3>
                   <%= recipe.title %>
                 </h3>
-                <% if current_user.role == "admin" %>
+                <% if current_user.role == "admin" || curent_user = @user %>
                 <%= link_to 'Delete Recipe', recipe,:class => "btn btn-submit", method: :delete,data: { confirm: 'Are you sure?' } %>
                 <%end%>
             </div>
           <% end -%>
         </div>
 
+
+
 </div>
+
+

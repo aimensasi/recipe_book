@@ -34,7 +34,7 @@
                     </div>
                 </div>
 
-                  <% if current_user.id == @recipe.user.id%>
+                  <% if current_user.id == @recipe.user.id || current_user.role == "admin"%>
                     <div class="text-right">
 
                         <a class="btn btn-success" href="/recipes/<%=@recipe.id%>/edit">Edit</a>
