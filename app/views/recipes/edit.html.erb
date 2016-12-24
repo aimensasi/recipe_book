@@ -1,3 +1,4 @@
+<div class="notice"></div>
 <div class="container">
   <!-- Info Card -->
   <div class="header">
@@ -13,8 +14,8 @@
     <div class="form-group row">
         <%= f.file_field :avatar, accept: 'image/png,image/jpg,image/jpeg',
                                 :class => "inputfile", "data-parent" => "logo" %>
-        <%= f.label :avatar, :class => "btn btn-file logo-btn" do %>
-          <% end -%>
+        <%= f.label :avatar, :class => "btn btn-file logo-btn" %>
+
     </div>
 
     <div class="form-group row">
@@ -77,13 +78,12 @@
     <% end %>
   </div><br>
 
-  <div class="header">
+
     <h2>Listing Ingredients</h2>
-  </div>
+
   <% if @recipe.ingredients.empty?%>
     <p>No ingredient</p>
   <%else%>
-  <div id="notice"></div>
   <table>
     <thead>
       <tr>
@@ -94,7 +94,7 @@
     </thead>
 
     <tbody>
-
+    <% count = 0 %>
       <% @recipe.ingredients.each do |ingredient| %>
         <%= form_for ingredient, :id=>"update_ingredient",:remote => true,:method => "Patch" do |f|%>
         <tr>
@@ -102,9 +102,11 @@
           <td><%= f.text_field :quantity,:class => "form-control", :placeholder => "quantity" , :value => "#{ingredient.quantity }"%></td>
           <%= f.hidden_field :recipe_id, :value=>@recipe.id%>
           <td><%= f.submit "Update Ingredient", :class => "btn btn-primary" %></td>
-          <td><%= link_to 'Delete Ingredient', ingredient,:id=>"delete_ingredient", :class => "btn btn-warning",method: :delete, data: { confirm: 'Are you sure?' },:remote => true %></td>
+
+          <td><%= link_to 'Delete Ingredient', ingredient,:id=>count, :onclick =>"deleteRow(count)",:class => "btn btn-warning",method: :delete, data: { confirm: 'Are you sure?' },:remote => true %></td>
         </tr>
-      <% end %>
+        <%count +=1%>
+        <% end %>
       <% end %>
     </tbody>
   </table>

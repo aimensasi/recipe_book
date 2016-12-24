@@ -62,16 +62,13 @@ class IngredientsController < ApplicationController
   # DELETE /ingredients/1.json
   def destroy
     @recipe = @ingredient.recipe
-
-     respond_to do |format|
       @ingredient.destroy
-      format.html { redirect_to edit_recipe_path(@recipe.id) }
-      format.json { head :no_content }
-      format.js   { render :layout => false }
-    end
+
+      redirect_to edit_recipe_path(@recipe.id)
 
 
-    # flash[:notice] = "Successfully deleted ingredient."
+
+    flash[:notice] = "Successfully deleted ingredient."
     # redirect_to edit_recipe_path(@recipe.id)
 
   end
