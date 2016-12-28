@@ -52,7 +52,7 @@ class IngredientsController < ApplicationController
       @ingredient.update(ingredient_params)
       format.html { redirect_to edit_recipe_path(@recipe.id) }
       format.json { head :no_content }
-      format.js   { flash[:notice]="Successfully Updated Ingredient" }
+      format.js   { @notice = "Successfully Updated Ingredient" }
     end
 
 

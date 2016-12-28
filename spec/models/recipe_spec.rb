@@ -15,7 +15,7 @@ require 'rails_helper'
 RSpec.describe Recipe, type: :model do
 
   let(:valid_attributes) { {:title=>"Good food" }}
-  let(:invalid_attributes_without_titile) {  }
+  let(:invalid_attributes_without_titile) { {} }
 
    context "validations" do
     it "has the right columns" do

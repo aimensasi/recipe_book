@@ -15,7 +15,7 @@ module SessionsHelper
   end
 
   def current_user
-    User.find_by_id(session[:user_id])
+    @current_user ||= User.find_by_id(session[:user_id])
   end
 
 
@@ -53,6 +53,5 @@ module SessionsHelper
   def log_out
      session[:user_id] = nil
      session[:pre_page] = nil
-
   end
 end

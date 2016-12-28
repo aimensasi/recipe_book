@@ -21,8 +21,9 @@ class RecipesController < ApplicationController
 
   def create
 
-    @recipe = Recipe.new(recipe_params)
-    @recipe.user_id = current_user.id
+    # @recipe = Recipe.new(recipe_params)
+    # @recipe.user_id = current_user.id
+    @recipe = current_user.recipes.new(recipe_params)
       # save goes like usual
       if @recipe.save
         flash[:notice] = "Successfully created recipe."
